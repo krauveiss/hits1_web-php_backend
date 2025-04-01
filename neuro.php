@@ -158,16 +158,20 @@ $nn = new NeuralNetwork();
 $nn->setWeights(json_decode(file_get_contents('train/weights.json'),true));
 
 $input=[
-    0,0,0,0,0, 
-    0,1,1,1,0, 
-    0,1,0,1,0, 
-    0,1,1,1,0, 
-    0,0,0,0,0
+    0,0,1,0,0, 
+    0,1,1,0,0, 
+    0,0,1,0,0, 
+    0,0,1,0,0, 
+    0,1,1,1,0
 ];
 
+foreach (array_chunk($input, 5) as $row) {
+    echo implode(' ', array_map(fn($x) => $x ? '⬛' : '⬜', $row)) . "<br/>";
+}
+echo "_________________<br/><br/>";
 $output = $nn->predict($input);
 $predictedNum = array_search(max($output),$output);
 foreach ($output as $key => $value) {
     echo "[$key] => " . number_format($value, 10) . "<br/>";
 }
-echo "_______<br/>Final predict:  " . $predictedNum;
+echo "________________________<br/>Final predict:  " . $predictedNum;
