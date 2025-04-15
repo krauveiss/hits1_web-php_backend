@@ -1,8 +1,8 @@
 <?php
 class NeuralNetwork
 {
-    private $inputSize = 25;
-    private $hiddenSize = 15;
+    private $inputSize = 2500;
+    private $hiddenSize = 256;
     private $outputSize = 10;
     private $biasHidden = array();
     private $biasOutput= array();
@@ -47,15 +47,19 @@ class NeuralNetwork
     }
 
 
-    private function sigmoid($x)
-    {
-        return 1 / (1 + exp(-$x));
+    private function relu($x) {
+        return max(0, $x);
     }
 
     private function softmax($arr) {
-        $exp = array_map('exp', $arr);
+        $max = max($arr);
+        $exp = array_map(function($x) use ($max) { 
+            return exp($x - $max); 
+        }, $arr);
         $sum = array_sum($exp);
-        return array_map(function($x) use ($sum) { return $x / $sum; }, $exp);
+        return array_map(function($x) use ($sum) { 
+            return $x / $sum; 
+        }, $exp);
     }
 
     public function predict($input)
@@ -68,7 +72,7 @@ class NeuralNetwork
                 $sum += $input[$j] * $this->weightsInputHidden[$j][$i];
             }
             $sum+=$this->biasHidden[$i];
-            $hiddenLayer[$i]=$this->sigmoid($sum);
+            $hiddenLayer[$i]=$this->relu($sum);
         }
 
         $result=array();
@@ -99,7 +103,7 @@ class NeuralNetwork
                 $sum += $input[$j] * $this->weightsInputHidden[$j][$i];
             }
             $sum+=$this->biasHidden[$i];
-            $hiddenLayer[$i]=$this->sigmoid($sum);
+            $hiddenLayer[$i]=$this->relu($sum);
         }
 
         $result=array();
@@ -154,24 +158,35 @@ class NeuralNetwork
 
 
 
+
 $nn = new NeuralNetwork();
-$nn->setWeights(json_decode(file_get_contents('train/weights.json'),true));
+$nn->setWeights(json_decode(file_get_contents('train/weights50.json'),true));
+$start_time = microtime(true);
 
-$input=[
-    0,0,1,0,0, 
-    0,1,1,0,0, 
-    0,0,1,0,0, 
-    0,0,1,0,0, 
-    0,1,1,1,0
-];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $gridData = isset($_POST['gridData']) ? $_POST['gridData'] : '';
+    
+    $input = json_decode($gridData, true);
+    if ($input === null) {
+        echo "Ошибка: неверные данные.";
+        exit;
+    }
+    
+    $output = $nn->predict($input);
+    $predictedNum = array_search(max($output),$output);
+    echo "<h2>Final predict:  " . $predictedNum . " <h2>";
+    echo "<h1>/</h1>";
+    foreach ($output as $key => $value) {
+        echo "[$key] => " . number_format($value, 10) . "<br/>";
+    }
+} else {
+    echo "Нет данных для обработки.";
+}
 
-foreach (array_chunk($input, 5) as $row) {
-    echo implode(' ', array_map(fn($x) => $x ? '⬛' : '⬜', $row)) . "<br/>";
-}
-echo "_________________<br/><br/>";
-$output = $nn->predict($input);
-$predictedNum = array_search(max($output),$output);
-foreach ($output as $key => $value) {
-    echo "[$key] => " . number_format($value, 10) . "<br/>";
-}
-echo "________________________<br/>Final predict:  " . $predictedNum;
+$end_time = microtime(true);
+
+$execution_time = $end_time - $start_time;
+
+
+echo "Время выполнения: " . $execution_time . " секунд.";
+
