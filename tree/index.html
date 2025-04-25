@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tree ID3</title>
+
+  <link rel="stylesheet" href="../css/tree.css">
+
+</head>
+<body>
+  <header><p>Solution tree (ID3)</p></header>
+  <div class="container">
+    <div class="gradient-border">
+      <form id="dataForm" class="panel">
+        <h2>Training sample (CSV ";")</h2>
+        <textarea name="train_data"></textarea>
+        <h2>New examples for classification</h2>
+        <textarea name="test_data"></textarea>
+        <div class="controls">
+          <button type="button" data-action="build" class="btn">Build tree</button>
+          <button type="button" data-action="classify" class="btn">Classify</button>
+        </div>
+      </form>
+    </div>
+
+    <div id="treeResult" class="panel" style="display:none;">
+      <h2>Tree structure</h2>
+      <div id="treeOutput" class="output"></div>
+    </div>
+
+    <div id="classifyResult" class="panel" style="display:none;">
+      <h2>Classification results</h2>
+      <div id="classifyOutput" class="output"></div>
+    </div>
+  </div>
+ <script src="tree.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clustering K-Means</title>
+  <link rel="stylesheet" href="../css/cluster.css"></link>
+</head>
+<body>
+  <header><p>K-Means clustering</p></header>
+  <div class="container">
+    <div class="gradient-border mb-3">
+      <div class="field" id="plotArea"></div>
+    </div>
+    <div class="controls">
+      <button id="decreaseBtn" class="btn-secondary">−</button>
+      <input type="text" id="kCount" class="custom-input" value="3" readonly>
+      <button id="increaseBtn" class="btn-secondary">+</button>
+      <button id="clusterBtn" class="btn-main">Cluster</button>
+      <button id="clearBtn" class="btn-main" style="background:transparent; border:1px solid white; color:white; width:150px;">Clear</button>
+    </div>
+  </div>
+
+  <script src="cluster.js"></script>
+</body>
+</html>
