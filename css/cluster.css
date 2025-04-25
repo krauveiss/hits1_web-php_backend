@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: radial-gradient(circle, rgba(15, 24, 36, 1) 0%, rgba(5, 5, 5, 1) 58%);
+    font-family: 'Poppins', sans-serif;
+    color: white;
+}
+
+header {
+    text-align: center;
+    padding: 20px 0;
+}
+
+header p {
+    font-size: 30px;
+    font-weight: 600;
+    background: linear-gradient(90deg, #fff 0%, #3BA0FF 63%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.container {
+    width: 90%;
+    max-width: 700px;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.gradient-border {
+    background: linear-gradient(90deg, #fff 0%, #3BA0FF 63%);
+    padding: 1px;
+    border-radius: 10px;
+}
+
+.field {
+    width: 500px;
+    height: 500px;
+    background: #0a0a0a;
+    border-radius: 10px;
+    position: relative;
+    cursor: pointer;
+}
+
+.controls {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn-main {
+    border: none;
+    background-color: #3BA0FF;
+    color: white;
+    border-radius: 5px;
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
+    transition: all 0.4s;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn-main:hover {
+    color: #202020;
+    font-size: 18px;
+    box-shadow: 0 0 10px #0F1824FF;
+}
+
+.btn-secondary {
+    border: 1px solid #a1a1a1;
+    background: transparent;
+    color: white;
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: all 0.4s;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-secondary:hover {
+    font-size: 22px;
+    text-shadow: 0 0 10px white;
+    box-shadow: 0 0 3px white;
+}
+
+.custom-input {
+    width: 60px;
+    height: 40px;
+    background: #0a0a0a;
+    border: 1px solid white;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+}

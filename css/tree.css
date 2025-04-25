@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap');
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background: radial-gradient(circle,rgba(15,24,36,1) 0%,rgba(5,5,5,1) 58%); font-family:'Poppins',sans-serif; color:white; }
+header { text-align:center; padding:20px 0; }
+header p { font-size:30px; font-weight:600; background:linear-gradient(90deg,#fff 0%,#3BA0FF 63%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.container { width:90%; max-width:900px; margin:50px auto; display:flex; flex-direction:column; gap:30px; }
+.gradient-border { background:linear-gradient(90deg,#fff 0%,#3BA0FF 63%); padding:1px; border-radius:10px; }
+.panel { background:#0a0a0a; border-radius:10px; padding:20px; }
+.panel h2 { margin-bottom:15px; font-weight:500;}
+textarea { width:100%; min-height:120px; background:#0a0a0a; border:1px solid #404040; border-radius:5px; color:white; padding:10px; font-family:monospace; resize: vertical; }
+.controls { display:flex; gap:15px; justify-content:center; flex-wrap:wrap; }
+.btn { border:none; background-color:#3BA0FF; color:white; border-radius:5px; width:150px; height:40px; cursor:pointer; transition:all 0.3s; font-size:16px; }
+.btn:hover { color:#202020; font-size:17px; box-shadow:0 0 8px #0F1824FF; }
+
+html {scroll-behavior: smooth;}
+
+.output { background:rgba(20,20,20,0.9); padding:15px; border-radius:5px; overflow-x:auto; }
+.output ul {
+    list-style: none;
+    position: relative;
+    padding-left: 20px;
+}
+.output ul ul {
+    padding-left: 20px;
+}
+.output li {
+    position: relative;
+    margin: 0;
+    padding: 8px 0 8px 20px;
+}
+.output li::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 0;
+    width: 15px; height: 1px;
+    background: #3BA0FF;
+    transform: translateY(-50%);
+}
+.output li::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 7px;
+    width: 1px;
+    height: 100%;
+    background: #3BA0FF;
+}
+.output li:last-child::after {
+    height: 50%;
+}
